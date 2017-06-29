@@ -2,14 +2,39 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Timesink</title>
+    <link rel="stylesheet" href="main.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <!-- <h1>Hello World!</h1> -->
     <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
+    <!-- We are using Node.js <script>document.write(process.versions.node)</script>,
     Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    and Electron <script>document.write(process.versions.electron)</script>. -->
+    <h2>Pick your poison.</h2>
+    <div class="btn-container">
+      <div class="btn-list">
+        <div class="btn-time-col">
+          <button id="netflix">Netflix</button>
+          <span id="netflix-time">0</span>
+        </div>
+        <div class="btn-time-col">
+          <button id="youtube">YouTube</button>
+          <span id="youtube-time">0</span>
+        </div>
+        <div class="btn-time-col">
+          <button id="buzzfeed">BuzzFeed</button>
+          <span id="buzzfeed-time">0</span>
+        </div>
+        <div class="btn-time-col">
+          <button id="facebook">Facebook</button>
+          <span id="facebook-time">0</span>
+        </div>
+      </div>
+      <div class="btn-time-col">
+        <button id="add-site">+</button>
+      </div>
+    </div>
   </body>
 
   <script>

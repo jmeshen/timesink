@@ -1,0 +1,17 @@
+.btn-list{
+  display: flex;
+}
+.btn-time-col {
+  display: flex;
+  width: 25%;
+  height: 150px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.btn-time-col button {
+  width: 90%;
+}
+.btn-time-col span {
+  margin: 5px;
+}
