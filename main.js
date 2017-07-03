@@ -1,9 +1,13 @@
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
+const ipc = electron.ipcMain
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 const Store = require('./store.js');
+const sites = require('./sites.js');
+
+console.log('sites: ', sites)
 
 const path = require('path')
 const url = require('url')
@@ -59,3 +63,12 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+ipc.on('asynchronous-message', function (event, arg) {
+  console.log('received: ', arg)
+  event.sender.send('asynchronous-reply', 'pong')
+  let secondWindow = new BrowserWindow({width: 800, height: 600, parent: mainWindow})
+  secondWindow.loadURL('https://google.com')
+  secondWindow.show()
+  // mainWindow.loadURL('https://google.com')
+})

@@ -1,16 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  background-color: #e5f6ff;
+}
+body {
+  font-family: 'Bitter', sans-serif;
+  // background-image: url('waves-bg.png')
+}
 .btn-list{
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .btn-time-col {
   display: flex;
+  flex: 1;
+  min-width: 200px;
   width: 25%;
   height: 150px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: white;
+  background-color: #4981A2;
+  border: 2px solid white;
+  border-radius: 10px;
+  margin: 5px;
 }
-.btn-time-col button {
-  width: 90%;
+.btn-time-col:hover {
+  background-color: #FA9F42;
+}
+.btn-time-col,
+.btn-time-col label,
+.btn-time-col span {
+  cursor: pointer;
+}
+.btn-time-col label {
+  font-size: 1.2rem;
 }
 .btn-time-col span {
   margin: 5px;

@@ -1,17 +1,16 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
-
-const BrowserWindow = require('electron').remote.BrowserWindow
+const electron = require('electron')
+const BrowserWindow = electron.remote.BrowserWindow
+const ipc = electron.ipcRenderer
 const path = require('path')
 // const Store = require('./store.js');
 const Store = require('electron-store');
 
 const store = new Store({
-  // We'll call our data file 'user-preferences'
   configName: 'time-log',
   defaults: {
-    // 800x600 is the default size of our window
     sites: {
       netflix: 0,
       youtube: 0,
@@ -19,13 +18,16 @@ const store = new Store({
       facebook: 0
     }
   }
+  // add a Today time spent counter?
 });
 
 console.log('sites from store: ', store.get('sites'))
 
+let win
+
 function loadWindow(site) {
   let startTime;
-  let win = new BrowserWindow({width: 1200, height: 800, show: false})
+  win = new BrowserWindow({width: 1200, height: 800, show: false})
   win.loadURL(site.url)
   win.once('ready-to-show', () => {
     win.show()
@@ -84,4 +86,15 @@ Object.keys(siteMap).forEach(site => {
   })
   const ctrEl = document.getElementById(`${site}-time`)
   ctrEl.innerText = timeHumanizer(store.get('sites')[site])
+})
+
+document.getElementById('add-site').addEventListener('click', () => {
+  console.log('herro')
+  ipc.send('asynchronous-message', 'ping')
+  // win.loadURL('https://google.com')
+})
+
+ipc.on('asynchronous-reply', function (event, arg) {
+  const message = `Asynchronous message reply: ${arg}`
+  console.log(message)
 })
